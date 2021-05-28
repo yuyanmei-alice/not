@@ -10,4 +10,6 @@ log.info(str)
 ```
 
 打印结果：
+[Ljava.lang.String;@716601
+
 [su001, su002, su003]
