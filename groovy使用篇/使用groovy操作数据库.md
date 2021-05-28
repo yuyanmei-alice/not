@@ -25,7 +25,9 @@ fbkId= context.expand('${GenerateFeedbackId#Response}')
 
 
 **关闭连接**
-      sql.close()
+      finally{
+	sql.close()
+	}
 ```
 
 
