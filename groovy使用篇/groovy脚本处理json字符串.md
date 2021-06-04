@@ -15,8 +15,8 @@ def expect_navid_map = [:]
 def actual_navid_map = [:]
 try{
  //获取数据库记录，封装成map（预期结果）
-sql.eachRow("select navid,local_File_Path  from itembaseddb.t_specification_file where ibid ='"+ibid+"' and status = '0'  "){ row ->
-       expect_navid_map.put(row.navid,row.local_File_Path)
+sql.eachRow("select ${tableColumn1},${tableColumn2} from ${databaseName}.{tableName} where ibid ='"+ibid+"' and status = '0'  "){ row ->
+       expect_navid_map.put(row.${tableColumn1},row.${tableColumn2})
 }
 //获取接口返回的数据,封装成map（实际结果）
 def response = context.expand( '${getHistoryNavid#Response}' )
@@ -24,9 +24,9 @@ def slurper=new JsonSlurper()
 def result=slurper.parseText(response)
 def message= result.body.message
 for(int i=0;i<message.size();i++){
-def navid = message[i].navid
-def local_file_path = message[i].localFilePath
-actual_navid_map.put(navid,local_file_path)
+def navid = message[i].${colunmName1}
+def local_file_path = message[i].${colunmName2}
+actual_navid_map.put(${colunmName1},${colunmName2})
 }
 }
 //如果脚本异常，那么定义脚本失败
