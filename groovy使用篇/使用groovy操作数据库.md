@@ -12,7 +12,7 @@ sql = Sql.newInstance(sqlconnect, sqlConnectUsername, sqlConnectPassword, driver
 fbkId= context.expand('${GenerateFeedbackId#Response}')
 
  sql.connection.autoCommit = false
-      def sqlstr = "delete from commentdb.t_sh_feedback where id ='"+fbkId+"'"
+      def sqlstr = "delete from ${yourdatabaseName}.${yourtableName} where ${yourTableColumnName} ='"+fbkId+"'"
    
       try {
          sql.execute(sqlstr);
